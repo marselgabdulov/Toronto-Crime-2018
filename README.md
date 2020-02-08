@@ -1,3 +1,7 @@
+# App showing Toronto crime activity in 2018.
+
+Based on data by [Toronto Police Service](http://data.torontopolice.on.ca/).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
