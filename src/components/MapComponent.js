@@ -39,7 +39,7 @@ function MapComponent({ crimeData, currentCrimeName }) {
           el.style.opacity = 0.9;
           el.style.left = x + 'px';
           el.style.top = y + 'px';
-          el.innerHTML = `<h3>ID: ${event_uniq_id}</h3><p>Type: ${premisetype}</p><p>Click for more details</p>`;
+          el.innerHTML = `<h3>ID: ${event_uniq_id}</h3><p>Type: ${premisetype}</p><p>Click to see details</p>`;
         } else {
           el.style.opacity = 0.0;
         }

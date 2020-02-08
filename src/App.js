@@ -15,14 +15,42 @@ import theftOverData from './data/theft-over.json';
 
 function App() {
   const [currentData, setCurrentData] = useState(assaultData);
-  const [currentCrimeName, setCurrentName] = useState('assault');
+  const [currentResult, setCurrentResult] = useState(currentData);
+  const [currentCrimeName, setCurrentCrimeName] = useState('assault');
+  const [currentPremisesList, setCurrentPremisesList] = useState([
+    'Outside',
+    'Apartment',
+    'House',
+    'Commercial',
+    'Other'
+  ]);
+
+  function handleState(data, name) {
+    setCurrentData(data);
+    setCurrentResult(data);
+    setCurrentCrimeName(name);
+    setCurrentPremisesList(
+      name === 'homicide'
+        ? ['Shooting', 'Stabbing', 'Other']
+        : ['Outside', 'Apartment', 'House', 'Commercial', 'Other']
+    );
+  }
+
+  function filterDataByPremisetype(premisetype) {
+    setCurrentResult(currentData);
+    let filteredData = currentData[currentCrimeName].filter(
+      incident => incident.premisetype === premisetype
+    );
+
+    setCurrentResult({ [currentCrimeName]: filteredData });
+  }
 
   return (
     <DetailsState>
       <div className='app'>
         <div className='app__map'>
           <MapComponent
-            crimeData={currentData}
+            crimeData={currentResult}
             currentCrimeName={currentCrimeName}
             googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyBvjINMXRM7jTpqM80B2drht5CnaVfjcX0&callback=initMap'
             loadingElement={<div style={{ height: `100%` }} />}
@@ -49,11 +77,8 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => {
-                  setCurrentData(assaultData);
-                  setCurrentName('assault');
-                }}
-                checked={currentData === assaultData}
+                onChange={() => handleState(assaultData, 'assault')}
+                checked={currentCrimeName === 'assault'}
               />
               <span>Assault</span>
             </div>
@@ -62,11 +87,8 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => {
-                  setCurrentData(autoTheftData);
-                  setCurrentName('auto-theft');
-                }}
-                checked={currentData === autoTheftData}
+                onChange={() => handleState(autoTheftData, 'auto-theft')}
+                checked={currentCrimeName === 'auto-theft'}
               />
               <span>Auto Theft</span>
             </div>
@@ -74,11 +96,10 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => {
-                  setCurrentData(breakAndEnterData);
-                  setCurrentName('break-and-enter');
-                }}
-                checked={currentData === breakAndEnterData}
+                onChange={() =>
+                  handleState(breakAndEnterData, 'break-and-enter')
+                }
+                checked={currentCrimeName === 'break-and-enter'}
               />
               <span>Break & Enter</span>
             </div>
@@ -86,23 +107,17 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => {
-                  setCurrentData(homicideData);
-                  setCurrentName('homicide');
-                }}
-                checked={currentData === homicideData}
+                onChange={() => handleState(homicideData, 'homicide')}
+                checked={currentCrimeName === 'homicide'}
               />
-              <span>Homicide</span>
+              <span>Homicide (Murder)</span>
             </div>
             <div className='app__choice'>
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => {
-                  setCurrentData(robberyData);
-                  setCurrentName('robbery');
-                }}
-                checked={currentData === robberyData}
+                onChange={() => handleState(robberyData, 'robbery')}
+                checked={currentCrimeName === 'robbery'}
               />
               <span>Robbery</span>
             </div>
@@ -110,18 +125,33 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => {
-                  setCurrentData(theftOverData);
-                  setCurrentName('theft-over');
-                }}
-                checked={currentData === theftOverData}
+                onChange={() => handleState(theftOverData, 'theft-over')}
+                checked={currentCrimeName === 'theft-over'}
               />
               <span>Theft Over</span>
             </div>
           </div>
+          <div className='app__filter'>
+            {currentPremisesList.map((premise, index) => (
+              <button
+                key={index}
+                onClick={() => filterDataByPremisetype(premise)}
+                className='filter-button'
+              >
+                {premise}
+              </button>
+            ))}
+            <button
+              onClick={() => setCurrentResult(currentData)}
+              className='filter-button'
+            >
+              All
+            </button>
+          </div>
+          <br />
           <div className='info'>
             <span>
-              Incidents <b>{currentData[currentCrimeName].length}</b>
+              Incidents <b>{currentResult[currentCrimeName].length}</b>
             </span>
           </div>
           <br />
