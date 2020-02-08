@@ -6,7 +6,7 @@ import { HeatmapLayer } from '@deck.gl/aggregation-layers';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import DetailsContext from '../context/details/detailsContext';
 
-function MapComponent({ crimeData }) {
+function MapComponent({ crimeData, currentCrimeName }) {
   const detailsContext = useContext(DetailsContext);
   const { showDetails } = detailsContext;
 
@@ -34,12 +34,12 @@ function MapComponent({ crimeData }) {
       onHover: ({ object, x, y }) => {
         const el = document.getElementById('tooltip');
         if (object) {
-          const { event_uniq_id } = object;
+          const { event_uniq_id, premisetype } = object;
           el.style.display = 'block';
           el.style.opacity = 0.9;
           el.style.left = x + 'px';
           el.style.top = y + 'px';
-          el.innerHTML = `<h3>ID: ${event_uniq_id}</h3><p>Click for more details</p>`;
+          el.innerHTML = `<h3>ID: ${event_uniq_id}</h3><p>Type: ${premisetype}</p><p>Click for more details</p>`;
         } else {
           el.style.opacity = 0.0;
         }
@@ -58,7 +58,10 @@ function MapComponent({ crimeData }) {
     });
   }
 
-  const layers = [scatterplotLayer(crimeData), heatmapLayer(crimeData)];
+  const layers = [
+    scatterplotLayer(crimeData[currentCrimeName]),
+    heatmapLayer(crimeData[currentCrimeName])
+  ];
   return (
     <DeckGL
       initialViewState={initialViewState}

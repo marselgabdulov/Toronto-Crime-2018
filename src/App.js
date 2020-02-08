@@ -15,6 +15,7 @@ import theftOverData from './data/theft-over.json';
 
 function App() {
   const [currentData, setCurrentData] = useState(assaultData);
+  const [currentCrimeName, setCurrentName] = useState('assault');
 
   return (
     <DetailsState>
@@ -22,6 +23,7 @@ function App() {
         <div className='app__map'>
           <MapComponent
             crimeData={currentData}
+            currentCrimeName={currentCrimeName}
             googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyBvjINMXRM7jTpqM80B2drht5CnaVfjcX0&callback=initMap'
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `100vh` }} />}
@@ -47,7 +49,10 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => setCurrentData(assaultData)}
+                onChange={() => {
+                  setCurrentData(assaultData);
+                  setCurrentName('assault');
+                }}
                 checked={currentData === assaultData}
               />
               <span>Assault</span>
@@ -57,7 +62,10 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => setCurrentData(autoTheftData)}
+                onChange={() => {
+                  setCurrentData(autoTheftData);
+                  setCurrentName('auto-theft');
+                }}
                 checked={currentData === autoTheftData}
               />
               <span>Auto Theft</span>
@@ -66,7 +74,10 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => setCurrentData(breakAndEnterData)}
+                onChange={() => {
+                  setCurrentData(breakAndEnterData);
+                  setCurrentName('break-and-enter');
+                }}
                 checked={currentData === breakAndEnterData}
               />
               <span>Break & Enter</span>
@@ -75,7 +86,10 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => setCurrentData(homicideData)}
+                onChange={() => {
+                  setCurrentData(homicideData);
+                  setCurrentName('homicide');
+                }}
                 checked={currentData === homicideData}
               />
               <span>Homicide</span>
@@ -84,7 +98,10 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => setCurrentData(robberyData)}
+                onChange={() => {
+                  setCurrentData(robberyData);
+                  setCurrentName('robbery');
+                }}
                 checked={currentData === robberyData}
               />
               <span>Robbery</span>
@@ -93,7 +110,10 @@ function App() {
               <input
                 type='radio'
                 className='radioButton'
-                onChange={() => setCurrentData(theftOverData)}
+                onChange={() => {
+                  setCurrentData(theftOverData);
+                  setCurrentName('theft-over');
+                }}
                 checked={currentData === theftOverData}
               />
               <span>Theft Over</span>
@@ -101,7 +121,7 @@ function App() {
           </div>
           <div className='info'>
             <span>
-              Incidents <b>{currentData.length}</b>
+              Incidents <b>{currentData[currentCrimeName].length}</b>
             </span>
           </div>
           <br />
