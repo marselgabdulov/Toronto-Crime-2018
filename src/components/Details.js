@@ -8,11 +8,12 @@ function Details() {
 
   return (
     <div className='details'>
+      <h3>Incident description:</h3>
       <span>
         ID: <b> {details.event_uniq_id}</b>
       </span>
       <span>
-        Date:{' '}
+        Date and time:{' '}
         <b>
           {' '}
           {details.occurrencedate &&

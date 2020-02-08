@@ -1,7 +1,3 @@
-body {
-  margin: 0;
-}
-
 a {
   color: white;
 }
@@ -9,31 +5,25 @@ a {
 #tooltip {
   position: absolute;
   background: white;
-  margin: 1px;
-  padding: 10px;
 }
 
 .app {
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
 }
 
 .app__info {
-  width: 20%;
-  height: 100%;
   background-color: rgba(71, 71, 71, 0.5);
   color: white;
   z-index: 1000;
-  padding: 1em;
-  line-height: 1.5em;
 }
 
 .app__choices {
   display: flex;
-  flex-direction: column;
-  margin-left: 2em;
+
 }
 
 .app__choice {
@@ -42,10 +32,206 @@ a {
   margin-bottom: 1em;
 }
 
-.radioButton {
-  margin-right: 1em;
-}
 
 .radioButton:hover {
   cursor: pointer;
+}
+
+
+@media screen and (max-width: 1023px) and (orientation: landscape) {
+  h1 {
+    font-size: 1.2em;
+  }
+
+  #tooltip {
+    margin: 1px;
+    padding: 10px;
+  }
+
+  .app__info {
+    width: 20%;
+    height: 100vh;
+    padding: 1em;
+    line-height: 1.5em;
+    font-size: 0.75em;
+  }
+
+  .app__choices {
+    flex-direction: column;
+    margin-left: 1em;
+  }
+
+  .app__choice {
+    margin-bottom: 0.75em;
+  }
+
+  .radioButton {
+    margin-right: 1em;
+  }
+}
+
+@media (max-width: 599px) and (orientation: portrait) {
+  .app {
+    flex-direction: row-reverse;
+  }
+
+  h1 {
+    font-size: 1.2em;
+  }
+
+  #tooltip {
+    margin: 1px;
+    padding: 10px;
+  }
+
+  .app__info {
+    width: 30%;
+    height: 100vh;
+    padding: 1em;
+    line-height: 1.25em;
+  }
+
+  .app__choices {
+    flex-direction: column;
+    margin-left: 1em;
+  }
+
+  .app__choice {
+    flex-direction: row-reverse;
+    margin-bottom: 0.75em;
+  }
+
+  .radioButton {
+    margin-right: 1em;
+  }
+}
+
+@media (min-width: 600px) and (orientation: portrait) {
+  .app {
+    flex-direction: row-reverse;
+  }
+
+  h1 {
+    font-size: 1.4em;
+  }
+
+  #tooltip {
+    margin: 1px;
+    padding: 10px;
+  }
+
+  .app__info {
+    width: 20%;
+    height: 100vh;
+    padding: 1em;
+    line-height: 1.25em;
+  }
+
+  .app__choices {
+    flex-direction: column;
+    margin-left: 1em;
+  }
+
+  .app__choice {
+    flex-direction: row-reverse;
+    margin-bottom: 0.75em;
+  }
+
+  .radioButton {
+    margin-right: 1em;
+  }
+}
+
+@media (min-width: 900px) and (orientation: landscape) {
+  h1 {
+    font-size: 1.4em;
+  }
+
+  #tooltip {
+    margin: 1px;
+    padding: 10px;
+  }
+
+  .app__info {
+    width: 20%;
+    height: 100vh;
+    padding: 1em;
+    line-height: 1.5em;
+  }
+
+  .app__choices {
+    flex-direction: column;
+    margin-left: 2em;
+  }
+
+  .app__choice {
+    margin-bottom: 1em;
+  }
+
+  .radioButton {
+    margin-right: 1em;
+  }
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 1.4em;
+  }
+
+  #tooltip {
+    margin: 1px;
+    padding: 10px;
+  }
+
+  .app__info {
+    width: 20%;
+    height: 100vh;
+    padding: 1em;
+    line-height: 1.5em;
+  }
+
+  .app__choices {
+    flex-direction: column;
+    margin-left: 2em;
+  }
+
+  .app__choice {
+    margin-bottom: 1em;
+  }
+
+  .radioButton {
+    margin-right: 1em;
+  }
+}
+
+@media (min-width: 1800px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  #tooltip {
+    margin: 1px;
+    padding: 10px;
+  }
+
+  .app__info {
+    width: 20%;
+    height: 100vh;
+    padding: 1em;
+    line-height: 1.5em;
+  }
+
+  .app__choices {
+    flex-direction: column;
+    margin-left: 2em;
+  }
+
+  .app__choice {
+    margin-bottom: 1em;
+  }
+
+  .radioButton {
+    margin-right: 1em;
+  }
+
 }

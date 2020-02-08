@@ -14,7 +14,7 @@ import robberyData from './data/robbery.json';
 import theftOverData from './data/theft-over.json';
 
 function App() {
-  const [currentData, setCurrentData] = useState(homicideData);
+  const [currentData, setCurrentData] = useState(assaultData);
 
   return (
     <DetailsState>
@@ -30,8 +30,9 @@ function App() {
         </div>
         <div id='tooltip'></div>
         <div className='app__info'>
-          <h1 className='app__title'>Crime Toronto 2018</h1>
+          <h1 className='app__title'>Toronto crime activity 2018</h1>
           <p className='app__description'>
+            Based on{' '}
             <a
               href='http://data.torontopolice.on.ca/'
               target='_blank'
@@ -104,7 +105,6 @@ function App() {
             </span>
           </div>
           <br />
-          <h3>Incident description:</h3>
           <Details />
         </div>
       </div>

@@ -14,9 +14,9 @@ function MapComponent({ crimeData }) {
     'pk.eyJ1IjoibWFycy1nYWJkdWxvdiIsImEiOiJjazZhb2t1eGgwNnVmM2xvZzUzbnpndHh1In0.268onGjsZnUr295iWoZzag';
 
   const initialViewState = {
-    longitude: -79.297986,
+    longitude: -79.197986,
     latitude: 43.710172,
-    zoom: 10.5,
+    zoom: 9.5,
     pitch: 0,
     bearing: 0
   };
@@ -27,8 +27,8 @@ function MapComponent({ crimeData }) {
       data: data,
       opacity: 0.8,
       filled: true,
-      radiusMinPixels: 10,
-      radiusMaxPixels: 12,
+      radiusMinPixels: 15,
+      radiusMaxPixels: 15,
       getPosition: d => [d.long, d.lat],
       pickable: true,
       onHover: ({ object, x, y }) => {
